@@ -7,17 +7,27 @@ export default class LoginForm extends Component {
     return (
       <View>
         <Text style={styles.signInText}>Sign In</Text>
-        <Input autoCapitalize="none" placeholder="Username" />
-        <Input secureTextEntry={true} placeholder="Password" />
+        <Input
+          returnKeyType={'next'}
+          autoCapitalize="none"
+          placeholder="Username"
+          onSubmitEditing={() => this.passwordInput.focus()}
+        />
+        <Input
+          returnKeyType={'go'}
+          secureTextEntry={true}
+          placeholder="Password"
+          inputRef={input => (this.passwordInput = input)}
+        />
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-    signInText: {
-      marginVertical: 10,
-      fontSize: 14,
-      color: '#333',
-    },
+  signInText: {
+    marginVertical: 10,
+    fontSize: 14,
+    color: '#333',
+  },
 });
