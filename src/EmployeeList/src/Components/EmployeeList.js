@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
-import {
-  StyleSheet,
-  FlatList,
-  TouchableOpacity,
-  TextInput,
-} from 'react-native';
+import {StyleSheet, FlatList, TouchableOpacity, TextInput} from 'react-native';
 import data from '../../data';
 
 export default class EmployeeList extends Component {
+  state = {
+    text: '',
+    contacts: data,
+  };
+
   renderContactItem = ({item, index}) => {
     return (
       <>
@@ -26,24 +26,42 @@ export default class EmployeeList extends Component {
     );
   };
 
+  searchFilter = text => {
+    const newData = data.filter(item => {
+      const listItem = `${item.name.toLowerCase()} ${item.company.toLowerCase()}`;
+      return listItem.indexOf(text.toLowerCase()) > -1;
+    });
+
+    this.setState({contacts: newData});
+  };
+
   renderHeader = () => {
+    const {text} = this.state;
     return (
       <View style={styles.searchContainer}>
-        <TextInput style={styles.searchInput} placeholder="Search.."></TextInput>
+        <TextInput
+          onChangeText={text => {
+            this.setState({text});
+            this.searchFilter(text);
+          }}
+          value={text}
+          style={styles.searchInput}
+          placeholder="Search.."></TextInput>
       </View>
-    )
-  }
+    );
+  };
 
   render() {
     return (
       <>
-          <FlatList
-            keyExtractor={item => {
-              item._id;
-            }}
-            ListHeaderComponent={this.renderHeader}
-            renderItem={this.renderContactItem}
-            data={data} />
+        <FlatList
+          keyExtractor={item => {
+            item._id;
+          }}
+          ListHeaderComponent={this.renderHeader()}
+          renderItem={this.renderContactItem}
+          data={this.state.contacts}
+        />
       </>
     );
   }
@@ -73,10 +91,10 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   searchInput: {
-    fontSize= 16,
+    fontSize: 16,
     backgroundColor: '#f9f9f9',
     padding: 10,
-  }
+  },
 });
 
 export default EmployeeList;
