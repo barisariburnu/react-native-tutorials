@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, ScrollView} from 'react-native';
+import {View, StyleSheet, ScrollView, Text} from 'react-native';
+import LoginForm from '../components/LoginForm';
 
 export default class Login extends Component {
   render() {
@@ -14,7 +15,10 @@ export default class Login extends Component {
           <ScrollView>
             <View style={styles.loginArea}>
               <Text style={styles.loginAreaTitle}>Property Tax Server</Text>
-              <Text style={styles.loginAreaDescription}>Unique Door No Easily Fill Your Entire Property Tax Using App</Text>
+              <Text style={styles.loginAreaDescription}>
+                Unique Door No Easily Fill Your Entire Property Tax Using App
+              </Text>
+              <LoginForm />
             </View>
           </ScrollView>
         </View>
@@ -70,7 +74,7 @@ const styles = StyleSheet.create({
     color: '#7e868f',
     marginVertical: 10,
     textAlign: 'center',
-  }
+  },
 });
 
 export default Login;
