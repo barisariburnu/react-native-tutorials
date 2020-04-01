@@ -1,20 +1,14 @@
-import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import React, {Component} from 'react';
+import Login from './src/screens/Login';
 
 export default class App extends Component {
   render() {
     return (
       <>
-        <View style={styles.container}></View>
+        <Login />
       </>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 export default App;
