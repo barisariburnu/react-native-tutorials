@@ -5,12 +5,12 @@ import {
 } from 'react-native';
 import EmployeeList from './src/Components/EmployeeList';
 
-export default class App extends Component {
+class App extends Component {
   render() {
     return (
       <>
         <SafeAreaView style={styles.container}>
-          <EmployeeList />>
+          <EmployeeList />
         </SafeAreaView>
       </>
     );

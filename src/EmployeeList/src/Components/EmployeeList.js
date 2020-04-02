@@ -1,8 +1,16 @@
 import React, {Component} from 'react';
-import {StyleSheet, FlatList, TouchableOpacity, TextInput} from 'react-native';
+import {
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+  TextInput,
+  View,
+  Image,
+  Text,
+} from 'react-native';
 import data from '../../data';
 
-export default class EmployeeList extends Component {
+class EmployeeList extends Component {
   state = {
     text: '',
     contacts: data,
@@ -56,7 +64,7 @@ export default class EmployeeList extends Component {
       <>
         <FlatList
           keyExtractor={item => {
-            item._id;
+            return item._id;
           }}
           ListHeaderComponent={this.renderHeader()}
           renderItem={this.renderContactItem}
