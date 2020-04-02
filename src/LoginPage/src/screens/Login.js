@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import LoginForm from '../components/LoginForm';
 
-export default class Login extends Component {
+class Login extends Component {
   render() {
     return (
       <>
