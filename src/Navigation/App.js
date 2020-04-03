@@ -11,7 +11,7 @@ export default class App extends Component {
         <NavigationContainer>
           <Stack.Navigator>
             <Stack.Screen name="Home" component={HomeScreen} />
-            <Stack.Screen name="Detail" component={DetailScreen} />
+            <Stack.Screen name="Detail" component={DetailScreen} initialParams={{ title: "Detail" }} />
           </Stack.Navigator>
         </NavigationContainer>
       </>
