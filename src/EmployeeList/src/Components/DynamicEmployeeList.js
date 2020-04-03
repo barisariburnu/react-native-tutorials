@@ -23,6 +23,7 @@ class DynamicEmployeeList extends Component {
     allContacts: [],
     loading: true,
     duringMomentum: false,
+    refreshing: false,
   };
 
   componentDidMount() {
@@ -38,16 +39,28 @@ class DynamicEmployeeList extends Component {
 
     const users = [...this.state.allContacts, ...contacts];
 
+    if (this.state.refreshing) {
+      users.reverse();
+    }
+
     this.setState({
       contacts: users,
       allContacts: users,
       loading: false,
+      refreshing: false,
     });
   };
 
   loadMore = () => {
     if (!this.state.duringMomentum) {
       this.setState({page: this.state.page + 1}, () => this.getContacts());
+      this.state.duringMomentum = true;
+    }
+  };
+
+  onRefresh = () => {
+    if (!this.state.duringMomentum) {
+      this.setState({page: 1, refreshing: true}, () => this.getContacts());
       this.state.duringMomentum = true;
     }
   };
@@ -128,6 +141,8 @@ class DynamicEmployeeList extends Component {
           onMomentumScrollBegin={() => {
             this.state.duringMomentum = false;
           }}
+          refreshing={this.state.refreshing}
+          onRefresh={this.onRefresh}
           data={this.state.contacts}
         />
       </>
