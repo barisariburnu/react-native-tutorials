@@ -1,26 +1,20 @@
 import React, {Component} from 'react';
-import {SafeAreaView, StyleSheet, View, Text} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import HomeScreen from './src/screens/HomeScreen';
 
-class App extends Component {
+export default class App extends Component {
   render() {
     return (
       <>
-        <SafeAreaView>
-          <View style={styles.container}>
-            <Text>React Navigation</Text>
-          </View>
-        </SafeAreaView>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen name="Home" component={HomeScreen} />
+          </Stack.Navigator>
+        </NavigationContainer>
       </>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
-
-export default App;
+const Stack = createStackNavigator();
