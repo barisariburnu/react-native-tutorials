@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Button} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from './src/screens/HomeScreen';
@@ -19,7 +20,23 @@ export default class App extends Component {
               name="Detail"
               component={DetailScreen}
               initialParams={{title: 'Detail'}}
-              options={({route}) => ({title: route.params.title})}
+              options={({navigation, route}) => ({
+                title: route.params.title,
+                headerRight: () => (
+                  <Button
+                    onPress={() => alert('This is a button!')}
+                    title="Info"
+                  />
+                ),
+                headerLeft: () => (
+                  <Button
+                    onPress={() => {
+                      navigation.goBack();
+                    }}
+                    title="Back"
+                  />
+                ),
+              })}
             />
           </Stack.Navigator>
         </NavigationContainer>
